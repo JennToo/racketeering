@@ -28,3 +28,18 @@
 
 (module+ test
   (check-equal? (board-render blank-board) "___\n___\n___"))
+
+(define (line-get-winner line)
+  (foldl (λ (x y) (if (equal? x y) x #f)) (first line) (rest line)))
+
+(define (board-iter-lines board)
+  ; TODO
+  '())
+
+(define (board-get-winner board)
+  (ormap line-get-winner (board-iter-lines board)))
+
+(module+ test
+  (check-equal? (line-get-winner '(blank x x)) #f)
+  (check-equal? (line-get-winner '(x x blank)) #f)
+  (check-equal? (line-get-winner '(x x x)) 'x))
