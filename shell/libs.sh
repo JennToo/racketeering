@@ -2,6 +2,4 @@
 
 set -x
 
-raco pkg install lens-lib
-raco pkg install fmt
-raco pkg install racket-language-server
+raco pkg install --skip-installed lens-lib fmt racket-language-server
