@@ -33,6 +33,11 @@
   (foldl (λ (x y) (if (equal? x y) x #f)) (first line) (rest line)))
 
 (define (board-iter-lines board)
+  (define ranges-to-check
+    (append (map (λ (x) (map cons (range 0 3) (list x x x))) (range 0 3))
+            (map (λ (x) (map cons (list x x x) (range 0 3))) (range 0 3))
+            ; Diagonals
+            '(((0 . 0) (1 . 1) (2 . 2)) ((2 . 0) (1 . 1) (0 . 2)))))
   ; TODO
   '())
 
