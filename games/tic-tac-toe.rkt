@@ -38,8 +38,12 @@
             (map (λ (x) (map cons (list x x x) (range 0 3))) (range 0 3))
             ; Diagonals
             '(((0 . 0) (1 . 1) (2 . 2)) ((2 . 0) (1 . 1) (0 . 2)))))
-  ; TODO
-  '())
+  (map (λ (line)
+         (map (λ (index)
+                (match index
+                  [(cons x y) (lens-view (list-ref-nested-lens x y) board)]))
+              line))
+       ranges-to-check))
 
 (define (board-get-winner board)
   (ormap line-get-winner (board-iter-lines board)))
